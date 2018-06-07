@@ -1,5 +1,6 @@
 'use strict'
-let arr = [null, null, null, null, null, null, null, null, null];
+const arrSpread = [null, null, null];
+let arr = [...arrSpread, null, null, null, null, null, null];
 let checker = true;
 let arrCombat = [
 	[0, 1, 2],
@@ -32,34 +33,43 @@ function checkWin(array, player) {
 
 function check0() {
 	let rs = false;
-	let templ = 'win';
 	if (checkWin(arrCombat, 0) === true) {
-		document.getElementById("text1").innerHTML = `0 ${ templ }`;
+		setTimeout(consoleFunc, 0);
 		rs = true;
 	}
 	return rs;
+}
+
+function consoleFunc() {
+	let templ = 'win'
+	document.getElementById("text1").innerHTML = `0 ${ templ }`;
 }
 
 function check1() {
 	let rs1 = false;
 	let templ1 = 'win';
 	if (checkWin(arrCombat, 1) === true) {
-		document.getElementById("text1").innerHTML = `x ${ templ1 }`;
+		setTimeout(function(){ document.getElementById("text1").innerHTML = `x ${ templ1 }` }, 0)
 		rs1 = true;
 	}
 	return rs1;
 }
 
+function f() {
+	return ['no'];
+}
+const [a] = f();
+
 function noWin() {
 	let templ2 = 'win';
 	let checker = true;
-	arr.forEach(function(element) {
-		if (element === null) {
+	Object.keys(arr).forEach(function(element) {
+		if (arr[element] == null) {
 			checker = false;
 		}
-	});
+	})
 	if (checker === true && !check0() && !check1()) {
-		document.getElementById("text1").innerHTML = `No ${ templ2 }`;
+		document.getElementById("text1").innerHTML = `${ a } ${ templ2 }`;
 	}
 	return checker;
 }
@@ -92,4 +102,5 @@ function myFuc(id, x) {
 	check1();
 	noWin();
 	freezTime();
+	f();
 }
