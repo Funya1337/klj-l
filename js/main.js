@@ -19,8 +19,8 @@ function checkWin(array, player) {
 
 	array.forEach(function(x) {
 		let result = true;
-		x.forEach(function(b) {
-			if (arr[b] !== player) {
+		var map1 = x.map(function(element) {
+			if (arr[element] !== player) {
 				result = false;
 			}
 		});
